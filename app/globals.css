@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@source not "../.next*";
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Promo popups: bottom sheet on phones, centred card from sm:. The panel
+   rises on mobile and scales in on desktop — one class, resolved in CSS so no
+   viewport is ever guessed at render time. */
+@keyframes promoRise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes promoPop {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.promo-backdrop-enter {
+  animation: fadeIn 220ms ease-out;
+}
+
+.promo-panel-enter {
+  animation: promoRise 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+  .promo-panel-enter {
+    animation: promoPop 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-backdrop-enter,
+  .promo-panel-enter {
+    animation: fadeIn 1ms linear;
+  }
+}
+
+@keyframes shimmer {
+  0%   { opacity: 1; }
+  40%  { opacity: 0.55; }
+  100% { opacity: 1; }
+}
+
+:root {
+  --color-primary: #3b82f6;
+  --color-primary-soft: #2a5fb8;
+  --color-primary-tint: #9fb9e8;
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-ink-subtle: #64748b;
+  --color-charcoal: #ffffff;
+  --color-surface: #f8fafc;
+  --color-surface-muted: #f1f5f9;
+  --color-surface-elevated: #ffffff;
+  --color-border: #e2e8f0;
+  --color-border-soft: #cbd5e1;
+  --color-accent: #3b82f6;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  /* Orange "wow" accent — used sparingly to entice or spotlight (edition
+     counts, the primary shop CTA). NEVER the logo, never the primary brand
+     colour. Blue stays primary. */
+  --color-highlight: #f97316;
+  --color-highlight-strong: #ea580c;
+  --color-highlight-tint: rgba(249, 115, 22, 0.1);
+  --color-highlight-border: rgba(249, 115, 22, 0.32);
+  --shadow-soft: 0 18px 30px -22px rgba(15, 23, 42, 0.08);
+  --shadow-card: 0 20px 40px -28px rgba(15, 23, 42, 0.12);
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-ink: var(--color-ink);
+  --color-charcoal: var(--color-charcoal);
+  --color-surface: var(--color-surface);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-accent: var(--color-accent);
+  --color-highlight: var(--color-highlight);
+  --font-sans: var(--font-manrope);
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 8% -10%, rgba(59, 130, 246, 0.07), transparent 55%),
+    radial-gradient(900px 480px at 92% 0%, rgba(20, 184, 166, 0.05), transparent 52%),
+    #f8fafc;
+  color: var(--color-ink);
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (max-width: 640px) {
+  body {
+    background-size: auto, auto;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: scroll, scroll;
+    background-position: 8% -10%, 92% 0%;
+  }
+}
+
+.font-display {
+  font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+}
+
+.bg-soft-gradient {
+  background:
+    radial-gradient(800px 400px at 10% 10%, rgba(59, 130, 246, 0.08), transparent 55%),
+    radial-gradient(700px 350px at 90% 0%, rgba(45, 212, 191, 0.06), transparent 50%),
+    #f8fafc;
+}
+
+.bg-surface-glow {
+  background:
+    radial-gradient(420px 240px at 15% 0%, rgba(59, 130, 246, 0.05), transparent 70%),
+    #f8fafc;
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.card-glow-hover:hover {
+  box-shadow: 0 0 0 1px #3B82F6, 0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+.pac-container {
+  z-index: 9999;
+}
+
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+  }
+}

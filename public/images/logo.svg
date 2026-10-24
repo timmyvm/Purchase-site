@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <!-- PEEL wordmark. Same canvas, letter height and blue as the APL mark so
+       LogoMark's sizing classes carry over unchanged; the foot of the L is
+       the peeled sticker corner. -->
+  <g fill="#3371ff">
+    <path fill-rule="evenodd" d="M120 274h270a180 180 0 0 1 0 360H270v254H120zM270 394v120h110a60 60 0 0 0 0-120z"/>
+    <path d="M640 274h370v130H790v112h300v120H790v122h220v130H640z"/>
+    <path d="M1080 274h370v130h-220v112h200v120h-200v122h220v130h-370z"/>
+    <path d="M1520 274h150v484h110l100 100v30h-360z"/>
+  </g>
+  <path fill="#9fb9e8" d="M1780 758l100 100h-100z"/>
+</svg>
