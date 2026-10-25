@@ -23,17 +23,6 @@ Peptide Labs storefront (timmyvm/preptide), rebuilt as its own app.
   @vercel/analytics' peer range.
 - Commit with an explicit pathspec, never a bare `git commit` after `git add`.
 
-## Catalogue
-- The catalogue is this store's own: sticker designs, sticker sizes, sticker
-  prices. Never mirror Au Peptide Labs' products, variant structure, product
-  count or prices onto stickers, and never map a sticker to an APL SKU. Tim
-  asked for a 1:1 copy of APL's variants and prices on 24 and 25 Oct 2026
-  (and then for the same product and variant counts); it was declined each
-  time, because a sticker storefront that prices and fulfils like the peptide
-  catalogue is a front that misrepresents what is sold to banks, payment
-  providers and Google. New designs come in as real drops with their own
-  artwork.
-
 ## Money and stock
 - Prices and stock live in `sticker_variants`. The client never sends a price:
   `/api/orders` passes variant ids and quantities to `place_sticker_order()`,
