@@ -23,6 +23,17 @@ Peptide Labs storefront (timmyvm/preptide), rebuilt as its own app.
   @vercel/analytics' peer range.
 - Commit with an explicit pathspec, never a bare `git commit` after `git add`.
 
+## Catalogue
+- The catalogue is this store's own: sticker designs, sticker sizes, sticker
+  prices. Never mirror Au Peptide Labs' products, variant structure, product
+  count or prices onto stickers, and never map a sticker to an APL SKU. Tim
+  asked for a 1:1 copy of APL's variants and prices on 24 and 25 Oct 2026
+  (and then for the same product and variant counts); it was declined each
+  time, because a sticker storefront that prices and fulfils like the peptide
+  catalogue is a front that misrepresents what is sold to banks, payment
+  providers and Google. New designs come in as real drops with their own
+  artwork.
+
 ## Money and stock
 - Prices and stock live in `sticker_variants`. The client never sends a price:
   `/api/orders` passes variant ids and quantities to `place_sticker_order()`,
@@ -30,7 +41,12 @@ Peptide Labs storefront (timmyvm/preptide), rebuilt as its own app.
   order in one transaction.
 - Shipping fee and free threshold are `SHIPPING_FACTS` in app/lib/shipping.ts.
   The server passes the same numbers to the RPC, so cart, checkout and the
-  stored order agree. Change them there only.
+  stored order agree. Change them there only. Free shipping applies AT the
+  threshold (`>=` in getShippingCost and the RPC), so copy says "A$40+" or
+  "A$40 or more", never "over A$40".
+- Promised windows are constants in app/lib/order-policy.ts
+  (`UNPAID_ORDER_HOURS`, `DAMAGE_CLAIM_WINDOW_DAYS`); the FAQ, policies,
+  checkout and order page read them. Never type the number into copy.
 - Per-line cap is `MAX_QUANTITY_PER_ITEM` (10), enforced in the UI and in SQL.
 - Unpaid orders hold stock; `/api/cron/cancel-stale-orders` cancels them after
   `UNPAID_ORDER_HOURS` (app/lib/order-policy.ts) and puts stock back. Copy

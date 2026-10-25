@@ -15,6 +15,21 @@ With only the publishable key the shop, product pages and cart work (the
 catalogue is publicly readable). Placing and looking up orders needs
 `SUPABASE_SECRET_KEY`, and order pages need `ORDER_STATUS_LINK_SECRET`.
 
+## Pages
+
+| Route | What |
+| --- | --- |
+| `/` | Hero with featured designs, facts strip, Drop 01 grid, collections, full set, FAQ, drop alerts |
+| `/shop`, `/collections/[slug]` | Every sticker (filter, sort, `?q=` search) and one page per collection |
+| `/product/[slug]` | Size picker, quantity, add to cart, edition size and copies left, sold-out drop alert |
+| `/cart`, `/checkout` | Cart, then a bank-transfer checkout (desktop summary column, phone bottom bar) |
+| `/order-status`, `/order-status/[orderNumber]` | Track Order lookup, and the signed order page with bank details while unpaid |
+| `/about`, `/faq`, `/contact` | Content; the contact form emails `ORDER_ALERT_EMAIL` through Resend |
+| `/shipping-policy`, `/refund-policy`, `/terms-of-service`, `/privacy-policy` | Policies, rendered from `SHIPPING_FACTS` and `order-policy.ts` |
+
+Layout and Tailwind classes are ported from the matching Au Peptide Labs
+pages, so the two stores look the same apart from the logo, images and copy.
+
 ## Data
 
 Everything lives in the Au Peptide Labs Supabase project, in its own tables:

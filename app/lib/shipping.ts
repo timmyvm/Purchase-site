@@ -26,7 +26,9 @@ export const DISPATCH_CLAIM_SHORT = `Dispatched within ${handlingLabel} of payme
 /** "Posted from Melbourne within 1–2 business days" */
 export const DISPATCH_CLAIM_WITH_ORIGIN = `Posted from ${dispatchCity} within ${handlingLabel}`;
 
-export const FREE_SHIPPING_CLAIM = `Free shipping over A$${SHIPPING_FACTS.freeThresholdAud}`;
+// "A$40+", not "over A$40": a subtotal of exactly the threshold ships free
+// (getShippingCost and place_sticker_order both use >=).
+export const FREE_SHIPPING_CLAIM = `Free shipping on orders A$${SHIPPING_FACTS.freeThresholdAud}+`;
 
 export const getShippingCost = (subtotal: number) =>
   subtotal <= 0 || subtotal >= SHIPPING_FACTS.freeThresholdAud ? 0 : SHIPPING_FACTS.feeAud;

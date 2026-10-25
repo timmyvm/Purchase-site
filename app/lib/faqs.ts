@@ -1,5 +1,5 @@
 import { SHIPPING_FACTS, DISPATCH_CLAIM_SHORT } from "@/app/lib/shipping";
-import { UNPAID_ORDER_HOURS } from "@/app/lib/order-policy";
+import { DAMAGE_CLAIM_WINDOW_DAYS, UNPAID_ORDER_HOURS } from "@/app/lib/order-policy";
 
 export type Faq = { question: string; answer: string };
 export type FaqGroup = { heading: string; items: Faq[] };
@@ -51,7 +51,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         question: "How much is shipping?",
-        answer: `A$${feeAud.toFixed(2)} Australia-wide, free on orders over A$${freeThresholdAud}. Orders are sent by ${SHIPPING_FACTS.carrier} in a rigid mailer so they arrive flat.`,
+        answer: `A$${feeAud.toFixed(2)} Australia-wide, free on orders of A$${freeThresholdAud} or more. Orders are sent by ${SHIPPING_FACTS.carrier} in a rigid mailer so they arrive flat.`,
       },
       {
         question: "How long does delivery take?",
@@ -63,8 +63,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         question: "What if my stickers arrive damaged?",
-        answer:
-          "Email us a photo within 14 days of delivery and we'll replace them, or refund you if that design has sold out. See the refund policy for the details.",
+        answer: `Email us a photo within ${DAMAGE_CLAIM_WINDOW_DAYS} days of delivery and we'll replace them, or refund you if that design has sold out. See the refund policy for the details.`,
       },
     ],
   },
